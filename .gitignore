@@ -7,3 +7,10 @@ build/
 dist/
 # Uploaded student material and derived data never go in git (PRD SEC-01, Q7)
 data/
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+coverage/
+data/artilearn.json
+data/uploads/
