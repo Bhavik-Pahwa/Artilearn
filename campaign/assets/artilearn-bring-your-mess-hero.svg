@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1680" height="945" viewBox="0 0 1680 945" role="img" aria-labelledby="title desc">
+  <title id="title">Artilearn Bring Your Mess campaign hero prototype</title>
+  <desc id="desc">A calm editorial collage of imperfect study materials connected by one indigo learning thread to a workspace, paired with the headline Bring your mess. Start learning.</desc>
+  <defs>
+    <filter id="ctaShadow" x="-20%" y="-30%" width="140%" height="180%">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#172033" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <image x="0" y="0" width="1680" height="945" preserveAspectRatio="xMidYMid slice" xlink:href="artilearn-bring-your-mess-hero-foundation.png"/>
+  <g aria-label="Artilearn product context prototype" font-family="Manrope, Inter, Arial, sans-serif">
+    <rect x="851" y="410" width="472" height="322" rx="22" fill="#FAFAF7" fill-opacity="0.94" stroke="#D9DCCF" stroke-width="1.5"/>
+    <rect x="874" y="432" width="164" height="34" rx="17" fill="#ECECFD"/>
+    <circle cx="894" cy="449" r="6" fill="#4B4CE6"/>
+    <text x="909" y="456" font-size="15" font-weight="700" fill="#172033">Calculus notebook</text>
+    <rect x="1048" y="432" width="99" height="34" rx="17" fill="#FFFFFF" stroke="#D9DCCF"/>
+    <text x="1097.5" y="454" text-anchor="middle" font-size="13" font-weight="700" fill="#172033">Quiz</text>
+    <rect x="1157" y="432" width="142" height="34" rx="17" fill="#FFFFFF" stroke="#D9DCCF"/>
+    <text x="1228" y="454" text-anchor="middle" font-size="13" font-weight="700" fill="#172033">Add materials</text>
+    <text x="874" y="500" font-size="23" font-weight="750" fill="#172033">What are you working on?</text>
+    <rect x="874" y="522" width="300" height="58" rx="16" fill="#F7F5EE" stroke="#D9DCCF"/>
+    <text x="892" y="547" font-size="13" font-weight="700" fill="#4B4CE6">Your question</text>
+    <text x="892" y="568" font-size="15" font-weight="550" fill="#172033">Help me understand this graph.</text>
+    <rect x="934" y="596" width="365" height="64" rx="16" fill="#ECECFD"/>
+    <text x="952" y="621" font-size="13" font-weight="700" fill="#4B4CE6">Artilearn</text>
+    <text x="952" y="643" font-size="14" font-weight="550" fill="#172033">Let's use your note and work through it.</text>
+    <rect x="874" y="677" width="425" height="38" rx="19" fill="#FFFFFF" stroke="#AEB3C0" stroke-width="1.4"/>
+    <text x="892" y="702" font-size="14" font-weight="500" fill="#5F6877">Ask about your material…</text>
+    <circle cx="1277" cy="696" r="13" fill="#4B4CE6"/>
+    <path d="M1272 696h10m-5-5 5 5-5 5" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g font-family="Manrope, Inter, Arial, sans-serif" fill="#172033">
+    <text x="118" y="94" font-size="30" font-weight="750" letter-spacing="-0.8">Artilearn</text>
+    <text x="118" y="319" font-family="Fraunces, Georgia, serif" font-size="86" font-weight="700" letter-spacing="-2.2">
+      <tspan x="118" dy="0">Bring your</tspan>
+      <tspan x="118" dy="84">mess.</tspan>
+      <tspan x="118" dy="96" fill="#4B4CE6">Start learning.</tspan>
+    </text>
+    <text x="122" y="641" font-size="23" font-weight="500" fill="#5F6877">
+      <tspan x="122" dy="0">Start with whatever you have.</tspan>
+      <tspan x="122" dy="36">Keep your learning connected.</tspan>
+    </text>
+    <g transform="translate(118 744)" filter="url(#ctaShadow)">
+      <rect width="248" height="68" rx="34" fill="#4B4CE6"/>
+      <text x="124" y="43" text-anchor="middle" font-size="20" font-weight="700" fill="#FFFFFF">Start your workspace</text>
+    </g>
+    <text x="118" y="873" font-size="14" font-weight="650" fill="#5F6877" letter-spacing="0.7">PROTOTYPE • PROVISIONAL WORDMARK</text>
+  </g>
+</svg>
