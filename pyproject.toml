@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "artilearn"
+version = "0.1.0"
+description = "Artilearn AI system: ingestion, verification, tutoring, assessment, learner model (see docs/PRD)"
+requires-python = ">=3.11"
+dependencies = [
+    "jsonschema>=4.20",
+    "pypdf>=4.0",
+    "python-docx>=1.1",
+    "python-pptx>=0.6.23",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+artilearn = ["schemas/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "gold: needs the labelled gold set (blocked on PRD Q1)",
+]

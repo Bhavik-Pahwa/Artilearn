@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+build/
+dist/
+# Uploaded student material and derived data never go in git (PRD SEC-01, Q7)
+data/

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "artilearn/mastery_estimate.schema.json",
+  "title": "Mastery estimate, epistemic class 'estimated' (PRD Sec. 9, 10.2)",
+  "type": "object",
+  "required": ["student_id", "concept_id", "alpha", "beta", "mean", "interval_lo", "interval_hi",
+               "n_evidence", "formats_seen", "status", "model_version"],
+  "properties": {
+    "alpha": {"type": "number", "exclusiveMinimum": 0},
+    "beta": {"type": "number", "exclusiveMinimum": 0},
+    "mean": {"type": "number", "minimum": 0, "maximum": 1},
+    "interval_lo": {"type": "number", "minimum": 0, "maximum": 1},
+    "interval_hi": {"type": "number", "minimum": 0, "maximum": 1},
+    "n_evidence": {"type": "integer", "minimum": 0},
+    "formats_seen": {"type": "array", "items": {"type": "string"}},
+    "status": {"enum": ["insufficient_evidence", "developing", "provisionally_understood"]},
+    "last_evidence_at": {"type": ["string", "null"]}
+  }
+}
