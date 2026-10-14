@@ -1,0 +1,92 @@
+{
+  "intent": {
+    "objective": "launch awareness and qualified trial",
+    "primary_message": "You do not need to arrive organized to begin learning",
+    "supporting_information": [
+      "Start with whatever you have",
+      "Keep notebooks, materials, questions, and real progress connected"
+    ],
+    "desired_action": "Bring one real study fragment into Artilearn and start the next useful learning task",
+    "audience": "Students managing multiple subjects, materials, and assessment workflows; exact segment unvalidated"
+  },
+  "concept": {
+    "creative_territory": "compassionate continuity",
+    "visual_proposition": "One authentic imperfect study fragment becomes one clear next action without being magically cleaned away",
+    "visual_proof": "A single indigo Learning Thread carries context from the fragment into a calm workspace and ends at one coral next-action node",
+    "brand_specific_angle": "Artilearn connects the student's real materials, notebook context, questions, learning actions, and honest progress"
+  },
+  "hierarchy": {
+    "primary": "headline and one continuous fragment-to-action journey",
+    "secondary": "connected material and workspace context",
+    "tertiary": "provisional wordmark and CTA",
+    "one_second_read": "bring an imperfect fragment; begin"
+  },
+  "composition": {
+    "aspect_ratio": "16:9",
+    "grid_type": "custom",
+    "alignment_anchors": ["left copy edge", "right visual mass", "Learning Thread path"],
+    "hero": "one continuous Learning Thread connecting an imperfect question to one available next action",
+    "secondary_mass": "tactile study fragments and restrained workspace geometry",
+    "negative_space": "left 38 percent reserved as low-frequency copy field",
+    "reading_direction": "ltr",
+    "eye_path": "headline to imperfect fragment to Learning Thread to coral next action to CTA",
+    "crop_logic": "preserve the thread origin, workspace, and endpoint; peripheral fragments may crop decisively",
+    "foreground": "selected study fragments and workspace",
+    "middle_ground": "supporting paper and material context",
+    "background": "warm canvas with restrained paper grain",
+    "typography_zone": "clean left field separated from the right visual mass",
+    "focal_points": 1
+  },
+  "typography": {
+    "class": "poster-ad-layout",
+    "roles": ["brand and provenance", "headline", "supporting copy", "CTA"],
+    "alignment": "left aligned to primary copy anchor",
+    "line_break_logic": "break by meaning: Bring your / mess. / Start learning.",
+    "language_direction": "ltr",
+    "exact_copy_locked": true
+  },
+  "color": {
+    "roles": ["warm-canvas", "surface", "ink", "indigo-thread", "quiet-slate", "coral-endpoint", "marigold-annotation"],
+    "value_structure": "ink headline and indigo thread remain distinct from the warm canvas in grayscale",
+    "accent_strategy": "indigo carries continuity; one coral endpoint indicates the next action; marigold is annotation only",
+    "contrast_target": "WCAG AA minimum; target 7:1 for body where practical"
+  },
+  "lighting": {
+    "key_direction": "upper-left",
+    "softness": "broad soft daylight",
+    "shadow_behavior": "low-elevation neutral contact shadows",
+    "temperature": "warm-neutral",
+    "motivation": "calm editorial daylight"
+  },
+  "materials": ["matte paper", "subtle pencil marks", "thin-border UI cards", "restrained paper grain"],
+  "effects": [
+    {
+      "name": "soft contact shadow",
+      "purpose": "ground the paper and interface layers while preserving a calm low-elevation composition"
+    }
+  ],
+  "style_families": ["premium editorial collage", "restrained product UI geometry"],
+  "brand_rules": [
+    "No final logo was supplied; wordmark is provisional",
+    "Do not imply grades, AI intelligence, magical organization, or unsupported product behavior",
+    "Progress must be derived from recorded activity",
+    "One fragment and one next action per asset"
+  ],
+  "observed_patterns": [
+    "Warm, calm, optimistic, trustworthy",
+    "Assistant workspace is the primary product anchor",
+    "Context should persist across notebooks, materials, tools, and progress"
+  ],
+  "inferred_choices": [
+    "Fraunces and Manrope pairing",
+    "Learning Thread as campaign-specific visual behavior",
+    "Bring Your Mess as prototype campaign platform"
+  ],
+  "restraints": [
+    "No generic AI brain, robot, neon orb, trophy, graduation cap, confetti, or feature-icon cloud",
+    "No before-and-after tidiness transformation",
+    "No more than one decorative thread",
+    "No UI rearrangement that depicts a non-existent flow"
+  ],
+  "heuristic_exceptions": []
+}
