@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "artilearn/learner_event.schema.json",
+  "title": "Learner response event, epistemic class 'observed' (PRD Sec. 9, LRN-01)",
+  "type": "object",
+  "required": ["id", "student_id", "question_id", "concept_id", "response", "graded_by", "score",
+               "graded_confidence", "format", "difficulty", "hints_used", "session_id", "timestamp"],
+  "properties": {
+    "graded_by": {"enum": ["deterministic", "rubric_model", "human"]},
+    "score": {"type": "number", "minimum": 0, "maximum": 1},
+    "graded_confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "difficulty": {"enum": ["easy", "medium", "hard"]},
+    "hints_used": {"type": "integer", "minimum": 0}
+  }
+}

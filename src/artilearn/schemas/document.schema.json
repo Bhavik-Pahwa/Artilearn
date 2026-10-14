@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "artilearn/document.schema.json",
+  "title": "Artilearn document JSON v1.0 (PRD Sec. 9, MAT-13)",
+  "type": "object",
+  "required": ["schema_version", "document", "subject", "processing", "coverage", "blocks",
+               "structure", "concepts", "relationships", "claims", "evidence", "generated"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "document": {
+      "type": "object",
+      "required": ["id", "name", "sha256", "format", "uploaded_at"],
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "format": {"enum": ["pdf", "docx", "pptx", null]},
+        "pages": {"type": ["integer", "null"], "minimum": 0},
+        "uploaded_at": {"type": "string"}
+      }
+    },
+    "subject": {
+      "type": "object",
+      "required": ["subject_id", "syllabus_id"],
+      "properties": {
+        "subject_id": {"type": ["string", "null"]},
+        "syllabus_id": {"type": ["string", "null"]}
+      }
+    },
+    "processing": {
+      "type": "object",
+      "required": ["job_id", "status", "pipeline_version", "warnings"],
+      "properties": {
+        "job_id": {"type": "string"},
+        "status": {"enum": ["completed", "completed_with_warnings", "failed"]},
+        "pipeline_version": {"type": "string"},
+        "warnings": {"type": "array", "items": {"$ref": "#/$defs/warning"}},
+        "failure": {
+          "type": "object",
+          "required": ["code", "detail"],
+          "properties": {
+            "code": {"enum": ["UNSUPPORTED_FORMAT", "PARSE_ERROR", "ENCRYPTED"]},
+            "detail": {"type": "string"}
+          }
+        }
+      },
+      "if": {"properties": {"status": {"const": "failed"}}},
+      "then": {"required": ["failure"]}
+    },
+    "coverage": {"type": "array", "items": {"$ref": "#/$defs/coverage_item"}},
+    "blocks": {"type": "array", "items": {"$ref": "#/$defs/block"}},
+    "structure": {"type": "array"},
+    "concepts": {"type": "array", "items": {"$ref": "#/$defs/concept"}},
+    "relationships": {"type": "array", "items": {"$ref": "#/$defs/relationship"}},
+    "claims": {"type": "array", "items": {"$ref": "#/$defs/claim"}},
+    "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+    "generated": {"type": "array", "items": {"$ref": "#/$defs/generated"}}
+  },
+  "allOf": [
+    {
+      "$comment": "MAT-01: a failed job emits no partial output",
+      "if": {"properties": {"processing": {"properties": {"status": {"const": "failed"}}}}},
+      "then": {"properties": {"blocks": {"maxItems": 0}, "concepts": {"maxItems": 0}, "claims": {"maxItems": 0}}}
+    }
+  ],
+  "$defs": {
+    "location": {
+      "type": "object",
+      "properties": {
+        "page": {"type": "integer", "minimum": 1},
+        "end_page": {"type": "integer", "minimum": 1},
+        "slide": {"type": "integer", "minimum": 1},
+        "paragraph": {"type": "integer", "minimum": 0},
+        "table": {"type": "integer", "minimum": 0},
+        "notes": {"type": "boolean"},
+        "block": {"type": "string"},
+        "heading_path": {"type": "array", "items": {"type": "string"}}
+      },
+      "anyOf": [
+        {"required": ["page"]}, {"required": ["slide"]},
+        {"required": ["paragraph"]}, {"required": ["table"]}
+      ]
+    },
+    "warning": {
+      "type": "object",
+      "required": ["code", "detail"],
+      "properties": {
+        "code": {"enum": ["UNREADABLE_SECTION", "NO_TEXT", "UNSUPPORTED_ELEMENT"]},
+        "location": {"$ref": "#/$defs/location"},
+        "detail": {"type": "string"}
+      }
+    },
+    "coverage_item": {
+      "type": "object",
+      "required": ["location", "chars", "flagged"],
+      "properties": {
+        "location": {"$ref": "#/$defs/location"},
+        "chars": {"type": "integer", "minimum": 0},
+        "flagged": {"type": "boolean"}
+      }
+    },
+    "block": {
+      "type": "object",
+      "required": ["id", "text", "location"],
+      "properties": {
+        "id": {"type": "string"},
+        "text": {"type": "string", "minLength": 1},
+        "location": {"$ref": "#/$defs/location"},
+        "unreadable_section": {"type": "boolean", "$comment": "MAT-02: downstream features exclude these"}
+      }
+    },
+    "origin": {"enum": ["source", "ai_generated", "inferred"]},
+    "concept": {
+      "type": "object",
+      "required": ["id", "type", "text", "origin", "location"],
+      "properties": {
+        "id": {"type": "string"},
+        "type": {"enum": ["unit", "topic", "concept", "definition", "formula", "example"]},
+        "text": {"type": "string"},
+        "origin": {"$ref": "#/$defs/origin"},
+        "location": {"$ref": "#/$defs/location"},
+        "needs_review": {"type": "boolean"},
+        "claim_ids": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "required": ["from", "to", "type", "origin"],
+      "properties": {
+        "type": {"enum": ["prerequisite_of", "part_of", "contrasts_with"]},
+        "origin": {"$ref": "#/$defs/origin"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "evidence_ids": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "verification_state": {
+      "enum": ["supported", "contradicted", "partially_supported", "conflicting", "unverified", "human_review"]
+    },
+    "claim": {
+      "type": "object",
+      "required": ["id", "text", "original_location", "verification"],
+      "properties": {
+        "id": {"type": "string"},
+        "text": {"type": "string"},
+        "original_location": {"$ref": "#/$defs/location"},
+        "verification": {
+          "type": "object",
+          "required": ["state", "reason", "evidence_ids", "checked_at", "suggested_correction"],
+          "properties": {
+            "state": {"$ref": "#/$defs/verification_state"},
+            "reason": {"type": "string"},
+            "evidence_ids": {"type": "array", "items": {"type": "string"}},
+            "checked_at": {"type": "string"},
+            "suggested_correction": {"type": ["string", "null"]}
+          },
+          "allOf": [
+            {
+              "$comment": "evidence_ids non-empty unless unverified (MAT-08, MAT-10)",
+              "if": {"properties": {"state": {"not": {"const": "unverified"}}}},
+              "then": {"properties": {"evidence_ids": {"minItems": 1}}}
+            },
+            {
+              "$comment": "suggested_correction only with contradicted/partially_supported",
+              "if": {"properties": {"state": {"not": {"enum": ["contradicted", "partially_supported"]}}}},
+              "then": {"properties": {"suggested_correction": {"type": "null"}}}
+            }
+          ]
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["id", "claim_id", "source_id", "access_method", "url_or_doc", "excerpt",
+                   "excerpt_location", "retrieved_at", "authority_rating", "relevance", "stance", "assessed_by"],
+      "properties": {
+        "access_method": {"enum": ["api", "permitted_content", "search_provider", "manual_document"]},
+        "excerpt": {"type": "string", "minLength": 1},
+        "stance": {"enum": ["supports", "partially_supports", "contradicts", "neutral"]},
+        "authority_rating": {"type": "number", "minimum": 0, "maximum": 1},
+        "relevance": {"type": "number", "minimum": 0, "maximum": 1},
+        "freshness_date": {"type": ["string", "null"]}
+      }
+    },
+    "generated": {
+      "type": "object",
+      "required": ["id", "kind", "origin", "text", "source_links", "model", "prompt_version"],
+      "properties": {
+        "origin": {"$ref": "#/$defs/origin"},
+        "source_links": {"type": "array", "minItems": 1},
+        "model": {"type": "string"},
+        "prompt_version": {"type": "string"},
+        "unsupported": {"type": "boolean"}
+      }
+    }
+  }
+}
